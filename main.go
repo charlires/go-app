@@ -13,6 +13,7 @@ import (
 
 	"github.com/charlires/go-app/controller"
 	"github.com/charlires/go-app/router"
+	"github.com/charlires/go-app/service"
 	"github.com/gorilla/handlers"
 	"github.com/spf13/viper"
 	"github.com/unrolled/render"
@@ -31,10 +32,14 @@ func main() {
 		log.Fatal("Failed to load config: %w", err)
 	}
 
+	pokeService := service.NewPokemon(config.GetString("pokeapi_host"))
+
 	demoController := controller.NewDemo(render.New())
+	pokeController := controller.NewPokemon(render.New(), pokeService)
 
 	httpRouter := router.Setup(
 		demoController,
+		pokeController,
 	)
 
 	stop := make(chan os.Signal, 1)

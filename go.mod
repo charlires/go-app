@@ -9,4 +9,5 @@ require (
 	github.com/spf13/viper v1.7.0
 	github.com/stretchr/testify v1.6.1
 	github.com/unrolled/render v1.0.3
+	gopkg.in/resty.v1 v1.12.0
 )
