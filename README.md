@@ -1,5 +1,15 @@
 # Basic Golang App
 
+![Code Integration](https://github.com/charlires/go-app/workflows/Code%20Integration/badge.svg)
+
+## Project Setup
+
+Install dependencies
+```bash
+go mod tidy
+go mod vendor
+```
+
 Run the project using the following command
 ```bash
 go run . --config-file=./config.yml
