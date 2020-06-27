@@ -33,9 +33,9 @@ jobs:
         run: docker build -t charlires/go-app .
 
       - name: Login Docker Hub
-        run: docker login -u charlires --password-stdin
         with:
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+        run: docker login -u charlires --password-stdin
 
       - name: Push Docker Image
         run: docker push charlires/go-app
