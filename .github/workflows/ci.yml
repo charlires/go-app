@@ -28,16 +28,15 @@ jobs:
       - name: Test
         run: go test -v ./...
 
-      - name: Build Docker Image
-        run: docker build -t charlires/go-app .
-
-      - name: Login Docker Hub
-        run: docker login -u charlires -p $DOCKER_HUB_TOKEN
-        env:
-          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-
-      - name: Push Docker Image
-        run: docker push charlires/go-app
+      # https://github.com/marketplace/actions/build-and-push-docker-images
+      - name: Docker Build and Push
+        uses: docker/build-push-action@v1
+        with:
+          username: charlires
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: charlires/go-app
+          tag_with_ref: true
+          tag_with_sha: true
 
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1

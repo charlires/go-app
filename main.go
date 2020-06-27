@@ -13,6 +13,7 @@ import (
 
 	"github.com/charlires/go-app/controller"
 	"github.com/charlires/go-app/router"
+	"github.com/gorilla/handlers"
 	"github.com/spf13/viper"
 	"github.com/unrolled/render"
 )
@@ -47,7 +48,7 @@ func main() {
 	// Build HTTP server object
 	server := http.Server{
 		Addr:              fmt.Sprintf("0.0.0.0:%s", config.GetString("http_port")),
-		Handler:           httpRouter,
+		Handler:           handlers.LoggingHandler(os.Stdout, httpRouter),
 		WriteTimeout:      15 * time.Second,
 		ReadTimeout:       15 * time.Second,
 		ReadHeaderTimeout: 15 * time.Second,
