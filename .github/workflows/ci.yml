@@ -38,3 +38,14 @@ jobs:
 
       - name: Push Docker Image
         run: docker push charlires/go-app
+
+      - uses: imranismail/setup-kustomize@v1
+        with:
+          kustomize-version: "3.1.0"
+        run: kubectl kustomize ./k8s/base > ./k8s/out/base.yml
+
+      - name: Upload Kubernetes Deployment file
+        uses: actions/upload-artifact@v1
+        with:
+          name: kubernetes.yml
+          path: ./k8s/out/base.yml
