@@ -7,14 +7,20 @@ go run . --config-file=./config.yml
 
 ## Unit Tests
 
-For testing we use https://github.com/golang/mock   
+For testing we use <https://github.com/golang/mock>
 ```bash
 GO111MODULE=on go get github.com/golang/mock/mockgen@latest
 ```
 
-Generate mocks for unit test by running `go generate ./...`
+Generate mocks for unit test by running
+```bash
+go generate ./...
+```
 
-Run unit tests `go test -v ./...`
+Run unit tests
+```bash
+go test -v ./...
+```
 
 ## Code Linting
 
@@ -34,16 +40,16 @@ Push image to docket hub
 docker push charlires/go-app
 ```
 
-Run container 
+Run container
 ```bash
-docker run --rm -it -v `pwd`/config.yml:/etc/config/config.yml charlires/go-app 
+docker run --rm -it -v `pwd`/config.yml:/etc/config/config.yml charlires/go-app
 ```
 
 ## Deploy App
 
 ### Run app in docker-desktop kubernetes
 
-Generate Kubernetes Deployment files  
+Generate Kubernetes Deployment files
 ```bash
 kustomize build ./k8s/base > ./k8s/out/base.yml
 ```
