@@ -26,7 +26,6 @@ func TestDemo(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.desc, func(t *testing.T) {
-			// cfg := &config.Configuration{}
 
 			ctrl := gomock.NewController(t)
 
