@@ -96,29 +96,19 @@ func (p *Pokemon) Defeat(w http.ResponseWriter, r *http.Request) {
 	if (pokemon1DoubleDamagePokemon2 && pokemon2DoubleDamagePokemon1) ||
 		(pokemon1HalfDamagePokemon2 && pokemon2HalfDamagePokemon1) {
 		msg = "Both pokemons can win"
-	}
-
-	// First pokemon is weak that the second
-	if pokemon1NoDamagePokemon2 && (pokemon2DoubleDamagePokemon1 || pokemon2HalfDamagePokemon1) {
+	} else if pokemon1NoDamagePokemon2 && (pokemon2DoubleDamagePokemon1 || pokemon2HalfDamagePokemon1) {
+		// First pokemon is weak that the second
 		msg = "Second pokemon will defeat the first"
-	}
-
-	// First pokemon is weak that the second
-	if pokemon1DoubleDamagePokemon2 || pokemon2HalfDamagePokemon1 {
+	} else if pokemon1DoubleDamagePokemon2 || pokemon2HalfDamagePokemon1 {
+		// First pokemon is weak that the second
 		msg = "First pokemon will defeat the second"
-	}
-
-	// Second pokemon is weak that the first
-	if pokemon2NoDamagePokemon1 && (pokemon1DoubleDamagePokemon2 || pokemon1HalfDamagePokemon2) {
+	} else if pokemon2NoDamagePokemon1 && (pokemon1DoubleDamagePokemon2 || pokemon1HalfDamagePokemon2) {
+		// Second pokemon is weak that the first
 		msg = "First pokemon will defeat the second"
-	}
-
-	// Second pokemon is weak that the first
-	if pokemon2DoubleDamagePokemon1 || pokemon1HalfDamagePokemon2 {
+	} else if pokemon2DoubleDamagePokemon1 || pokemon1HalfDamagePokemon2 {
+		// Second pokemon is weak that the first
 		msg = "Second pokemon will defeat the first"
-	}
-
-	if msg == "" {
+	} else {
 		msg = "Both pokemons can win"
 	}
 
