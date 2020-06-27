@@ -56,7 +56,10 @@ func main() {
 	// Launch server start in a separate goroutine
 	go func() {
 		log.Printf("starting server in address, %s\n", server.Addr)
-		server.ListenAndServe()
+		err := server.ListenAndServe()
+		if err != nil {
+			log.Fatal("starting server: %w", err)
+		}
 	}()
 
 	// Catch application's interrupt signals (Kill, Hang up and Interrupt)
@@ -66,6 +69,10 @@ func main() {
 	log.Println("shutting down the server...")
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
-	server.Shutdown(ctx)
+	err := server.Shutdown(ctx)
+	if err != nil {
+		log.Fatal("shutting down server gracefully: %w", err)
+		return
+	}
 	log.Println("server gracefully stopped")
 }
