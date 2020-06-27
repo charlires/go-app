@@ -40,7 +40,7 @@ jobs:
         run: docker push charlires/go-app
 
       - name: Set up Kustomize
-      - uses: imranismail/setup-kustomize@v1
+        uses: imranismail/setup-kustomize@v1
         with:
           kustomize-version: "3.1.0"
 
