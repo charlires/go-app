@@ -13,19 +13,19 @@ import (
 //go:generate mockgen -destination demo_controller_mock_test.go -package router_test github.com/charlires/go-app/router DemoController
 func TestDemo(t *testing.T) {
 	testCases := []struct {
-		desc        string
+		name        string
 		handlerName string
 		status      int
 	}{
 		{
-			desc:        "/",
+			name:        "/",
 			handlerName: "Demo",
 			status:      http.StatusOK,
 		},
 	}
 
 	for _, tc := range testCases {
-		t.Run(tc.desc, func(t *testing.T) {
+		t.Run(tc.name, func(t *testing.T) {
 
 			ctrl := gomock.NewController(t)
 
