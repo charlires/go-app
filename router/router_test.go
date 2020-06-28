@@ -35,7 +35,7 @@ func TestDemo(t *testing.T) {
 
 			r := router.Setup(DemoController)
 
-			req, err := http.NewRequest("GET", tc.desc, nil)
+			req, err := http.NewRequest("GET", tc.name, nil)
 			if err != nil {
 				t.Fatal(err)
 			}
