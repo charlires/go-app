@@ -13,7 +13,7 @@ type DemoController interface {
 
 // PokemonController - Interface for Pokemon requests
 type PokemonController interface {
-	Defeat(w http.ResponseWriter, r *http.Request)
+	Compare(w http.ResponseWriter, r *http.Request)
 	CommonMoves(w http.ResponseWriter, r *http.Request)
 }
 
@@ -33,7 +33,7 @@ func Setup(
 	pokeRouter := r.PathPrefix("/pokeapi/v1/pokemons").Subrouter()
 	pokeRouter.HandleFunc(
 		"/{pokemon1}/defeat/{pokemon2}",
-		pokemonController.Defeat).Methods("GET").Name("defeat")
+		pokemonController.Compare).Methods("GET").Name("defeat")
 	pokeRouter.HandleFunc(
 		"/{pokemon1}/common_moves/{pokemon2}",
 		pokemonController.CommonMoves).Methods("GET").Name("common_moves")

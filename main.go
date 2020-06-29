@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"github.com/charlires/go-app/usecase"
 	"log"
 	"net/http"
 	"os"
@@ -34,8 +35,10 @@ func main() {
 
 	pokeService := service.NewPokemon(config.GetString("pokeapi_host"))
 
+	pokeUseCase := usecase.NewPokemon(pokeService)
+
 	demoController := controller.NewDemo(render.New())
-	pokeController := controller.NewPokemon(render.New(), pokeService)
+	pokeController := controller.NewPokemon(render.New(), pokeUseCase)
 
 	httpRouter := router.Setup(
 		demoController,

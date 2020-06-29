@@ -22,6 +22,11 @@ func TestDemo(t *testing.T) {
 			handlerName: "Demo",
 			status:      http.StatusOK,
 		},
+		{
+			name:        "",
+			handlerName: "",
+			status:      http.StatusOK,
+		},
 	}
 
 	for _, tc := range testCases {
