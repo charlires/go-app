@@ -1,3 +1,4 @@
 vendor/
 k8s/out/
 .vscode
+.idea

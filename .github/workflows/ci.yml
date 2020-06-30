@@ -26,7 +26,7 @@ jobs:
           go mod vendor
 
       - name: Test
-        run: go test -v ./...
+        run: go test -v -covermode=count ./...
 
       # https://github.com/marketplace/actions/build-and-push-docker-images
       - name: Docker Build and Push
