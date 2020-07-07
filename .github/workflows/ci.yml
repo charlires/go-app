@@ -34,7 +34,7 @@ jobs:
         with:
           username: charlires
           password: ${{secrets.GITHUB_TOKEN}}
-          repository: charlires/go-app
+          repository: charlires/go-app/api
           registry: docker.pkg.github.com
           tag_with_ref: true
           tag_with_sha: true
