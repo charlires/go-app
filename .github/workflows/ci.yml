@@ -37,7 +37,7 @@ jobs:
           repository: charlires/go-app/api
           registry: docker.pkg.github.com
           tag_with_ref: true
-          tag_with_sha: true
+          # tag_with_sha: true
 
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
