@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Code Integration
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go 1.x
@@ -26,17 +26,23 @@ jobs:
           go mod vendor
 
       - name: Test
-        run: go test -v ./...
+        run: go test -v -covermode=count ./...
+
+      - name: Lint
+        uses: docker://github/super-linter:v2.2.0
+        env:
+          VALIDATE_ALL_CODEBASE: false
 
       # https://github.com/marketplace/actions/build-and-push-docker-images
       - name: Docker Build and Push
         uses: docker/build-push-action@v1
         with:
           username: charlires
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: charlires/go-app
-          tag_with_ref: true
+          password: ${{secrets.GITHUB_TOKEN}}
+          repository: charlires/go-app/api
+          registry: docker.pkg.github.com
           tag_with_sha: true
+          # tag_with_ref: true
 
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
