@@ -34,13 +34,21 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
 
       # https://github.com/marketplace/actions/build-and-push-docker-images
-      - name: Docker Build and Push
+      - name: Docker Build and Push to Github Repositories
         uses: docker/build-push-action@v1
         with:
           username: charlires
           password: ${{secrets.GITHUB_TOKEN}}
           repository: charlires/go-app/api
           registry: docker.pkg.github.com
+          tag_with_sha: true
+
+      - name: Docker Build and Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: charlires
+          password: ${{secrets.DOCKER_HUB_TOKEN}}
+          repository: charlires/go-app
           tag_with_sha: true
           # tag_with_ref: true
 

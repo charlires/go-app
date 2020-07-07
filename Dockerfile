@@ -17,3 +17,5 @@ COPY --from=build /app/bin .
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ENTRYPOINT ["./bin"]
+
+EXPOSE 8081
