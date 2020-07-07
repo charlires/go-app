@@ -33,8 +33,9 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           username: charlires
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          password: ${{secrets.GITHUB_TOKEN}}
           repository: charlires/go-app
+          registry: docker.pkg.github.com
           tag_with_ref: true
           tag_with_sha: true
 
